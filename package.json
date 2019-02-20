@@ -1,6 +1,6 @@
 {
   "name": "hypernova-vue",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Vue bindings for Hypernova",
   "main": "lib/index.js",
   "author": "Felipe Guizar Diaz <felipegaiacharly@gmail.com>",
