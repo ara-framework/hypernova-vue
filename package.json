@@ -1,0 +1,30 @@
+{
+  "name": "hypernova-vue",
+  "version": "0.1.0",
+  "description": "Vue bindings for Hypernova",
+  "main": "lib/index.js",
+  "author": "Felipe Guizar Diaz <felipegaiacharly@gmail.com>",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "vuew",
+    "hypernova",
+    "server",
+    "render"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:marconi1992/hypernova-vue.git"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-airbnb": "^2.5.3"
+  },
+  "peerDependencies": {
+    "hypernova": "^2.5.0",
+    "vue": "^2.6.6",
+    "vue-server-renderer": "^2.6.6"
+  }
+}
