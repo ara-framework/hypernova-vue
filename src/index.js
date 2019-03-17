@@ -36,3 +36,39 @@ export const renderVue = (name, Component) => hypernova({
     return Component;
   },
 });
+
+
+export const renderVuex = (name, Component) => hypernova({
+  server() {
+    return async (propsData) => {
+      const vm = new Component({
+        propsData,
+      });
+
+      const renderer = createRenderer();
+
+      const contents = await renderer.renderToString(vm);
+
+      return serialize(name, contents, { propsData, state: vm.$store.state });
+    };
+  },
+
+  client() {
+    const payloads = load(name);
+    if (payloads) {
+      payloads.forEach((payload) => {
+        const { node, data } = payload;
+        const { propsData, state } = data;
+        const vm = new Component({
+          propsData,
+        });
+
+        vm.$store.replaceState(state);
+
+        vm.$mount(node.children[0]);
+      });
+    }
+
+    return Component;
+  },
+});
