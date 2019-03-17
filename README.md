@@ -18,13 +18,25 @@ Here's how to use it in your module:
 
 ```js
 import { renderVue, Vue } from 'hypernova-vue'
+import HeaderComponent from './components/HeaderComponent.vue'
 
-const Header = Vue.extend({
-  props: ['title'],
-  render: function(createElement) {
-    return createElement('h1', this.title)
-  }
-})
+const Header = Vue.extend(HeaderComponent)
 
 export default renderVue('Header', Header)
+```
+
+## Usage with Vuex
+
+
+```js
+import { renderVuex, Vue } from 'hypernova-vue'
+import store from './store'
+import HeaderComponent from './components/HeaderComponent.vue'
+
+const Header = Vue.extend({
+  ...HeaderComponent,
+  store
+})
+
+export default renderVuex('Header', Header)
 ```
