@@ -38,9 +38,16 @@ export const renderVue = (name, Component) => hypernova({
 });
 
 
-export const renderVuex = (name, Component) => hypernova({
+export const renderVuex = (name, ComponentDefinition, createStore) => hypernova({
   server() {
     return async (propsData) => {
+      const store = createStore();
+
+      const Component = Vue.extend({
+        ...ComponentDefinition,
+        store,
+      });
+
       const vm = new Component({
         propsData,
       });
@@ -59,6 +66,13 @@ export const renderVuex = (name, Component) => hypernova({
       payloads.forEach((payload) => {
         const { node, data } = payload;
         const { propsData, state } = data;
+        const store = createStore();
+
+        const Component = Vue.extend({
+          ...ComponentDefinition,
+          store,
+        });
+
         const vm = new Component({
           propsData,
         });
@@ -69,6 +83,6 @@ export const renderVuex = (name, Component) => hypernova({
       });
     }
 
-    return Component;
+    return ComponentDefinition;
   },
 });

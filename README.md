@@ -30,13 +30,8 @@ export default renderVue('Header', Header)
 
 ```js
 import { renderVuex, Vue } from 'hypernova-vue'
-import store from './store'
+import createStore from './store'
 import HeaderComponent from './components/HeaderComponent.vue'
 
-const Header = Vue.extend({
-  ...HeaderComponent,
-  store
-})
-
-export default renderVuex('Header', Header)
+export default renderVuex('Header', HeaderComponent, createStore)
 ```
