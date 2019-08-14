@@ -1,8 +1,32 @@
 import vue from 'vue';
 import { createRenderer } from 'vue-server-renderer';
 import hypernova, { serialize, load } from 'hypernova';
+import { findNode, getData } from 'nova-helpers';
+
+const { document } = global;
+
+const mountComponent = (Component, node, data) => {
+  const vm = new Component({
+    propsData: data,
+  });
+
+  if (!node.firstChild) {
+    node.appendChild(document.createElement('div'));
+  }
+
+  vm.$mount(node.children[0]);
+};
 
 export const Vue = vue;
+
+export const renderInPlaceholder = (name, Component, id) => {
+  const node = findNode(name, id);
+  const data = getData(name, id);
+
+  if (node && data) {
+    mountComponent(Component, node, data);
+  }
+};
 
 export const renderVue = (name, Component) => hypernova({
   server() {

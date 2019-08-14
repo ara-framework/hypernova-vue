@@ -1,6 +1,6 @@
 {
   "name": "hypernova-vue",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Vue bindings for Hypernova",
   "main": "lib/index.js",
   "author": "Felipe Guizar Diaz <felipegaiacharly@gmail.com>",
@@ -21,14 +21,17 @@
     "url": "git@github.com:marconi1992/hypernova-vue.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-airbnb": "^2.5.3",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "babel-preset-airbnb": "^4.0.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0"
   },
-  "peerDependencies": {
+  "dependencies": {
     "hypernova": "^2.5.0",
+    "nova-helpers": "^1.0.1-alpha.0",
     "vue": "^2.6.6",
     "vue-server-renderer": "^2.6.6"
   }
