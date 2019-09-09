@@ -1,11 +1,11 @@
 import Vue, { VueConstructor } from 'vue';
 import { createRenderer } from 'vue-server-renderer';
-import { serialize } from 'hypernova';
-import * as hypernova from 'hypernova';
+import hypernova, { serialize } from 'hypernova';
 import { CombinedVueInstance } from 'vue/types/vue';
 
 
-type VueWithStoreInstance = CombinedVueInstance<Vue, object, object, object, object> & { $store: any };
+type VueWithStoreInstance =
+  CombinedVueInstance<Vue, object, object, object, object> & { $store: any };
 
 export { default as Vue } from 'vue';
 
@@ -30,7 +30,11 @@ export const renderVue = (name: string, Component: VueConstructor): void => hype
 });
 
 
-export const renderVuex = (name: string, ComponentDefinition: any, createStore: Function): void => hypernova({
+export const renderVuex = (
+  name: string,
+  ComponentDefinition: any,
+  createStore: Function,
+): void => hypernova({
   server() {
     return async (propsData: object): Promise<string> => {
       const store = createStore();

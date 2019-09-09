@@ -3,9 +3,11 @@
     "module": "commonjs",
     "target": "esnext",
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

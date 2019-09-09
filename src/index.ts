@@ -1,6 +1,5 @@
 import Vue, { VueConstructor } from 'vue';
-import { load } from 'hypernova';
-import * as hypernova from 'hypernova';
+import hypernova, { load } from 'hypernova';
 import { findNode, getData } from 'nova-helpers';
 import { CombinedVueInstance } from 'vue/types/vue';
 
@@ -9,13 +8,20 @@ type HypernovaPayload = {
   data: any;
 }
 
-type VueWithStoreInstance = CombinedVueInstance<Vue, object, object, object, object> & { $store: any };
+type VueInstance = CombinedVueInstance<Vue, object, object, object, object>
 
-export { default as Vue }  from 'vue';
+type VueWithStoreInstance =
+  CombinedVueInstance<Vue, object, object, object, object> & { $store: any };
+
+export { default as Vue } from 'vue';
 
 export { load } from 'hypernova';
 
-export const mountComponent = (Component: VueConstructor, node: HTMLElement, data: any): CombinedVueInstance<Vue, object, object, object, object> => {
+export const mountComponent = (
+  Component: VueConstructor,
+  node: HTMLElement,
+  data: any,
+): VueInstance => {
   const vm = new Component({
     propsData: data,
   });
@@ -29,7 +35,11 @@ export const mountComponent = (Component: VueConstructor, node: HTMLElement, dat
   return vm;
 };
 
-export const renderInPlaceholder = (name: string, Component: VueConstructor, id: string): CombinedVueInstance<Vue, object, object, object, object> => {
+export const renderInPlaceholder = (
+  name: string,
+  Component: VueConstructor,
+  id: string,
+): VueInstance => {
   const node: HTMLElement = findNode(name, id);
   const data: any = getData(name, id);
 
@@ -73,7 +83,11 @@ export const renderVue = (name: string, Component: VueConstructor): void => hype
   },
 });
 
-export const renderVuex = (name: string, ComponentDefinition: any, createStore: Function): void => hypernova({
+export const renderVuex = (
+  name: string,
+  ComponentDefinition: any,
+  createStore: Function,
+): void => hypernova({
   server() {
     throw new Error('Use hypernova-vue/server instead');
   },

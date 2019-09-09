@@ -1,3 +1,14 @@
 {
-  "extends": ["plugin:@typescript-eslint/recommended"]
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base"
+  ],
+  "rules": {
+    "import/no-unresolved": 0
+  }
 }
