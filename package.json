@@ -1,13 +1,15 @@
 {
   "name": "hypernova-vue",
-  "version": "2.1.0",
+  "version": "3.0.0-alpha.0",
   "description": "Vue bindings for Hypernova",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "Felipe Guizar Diaz <felipegaiacharly@gmail.com>",
   "scripts": {
-    "prepublish": "npm run build",
-    "lint": "eslint src",
-    "build": "babel src -d lib"
+    "lint": "eslint src/**/*.ts",
+    "build": "tsc",
+    "test": "jest",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "vuew",
@@ -18,16 +20,21 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:marconi1992/hypernova-vue.git"
+    "url": "https://github.com/ara-framework/hypernova-vue.git"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
-    "babel-preset-airbnb": "^4.0.1",
-    "eslint": "^5.14.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "@babel/runtime": "^7.6.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.1.0",
+    "@typescript-eslint/parser": "^2.1.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.6.0",
+    "semantic-release": "^15.13.24"
   },
   "dependencies": {
     "hypernova": "^2.5.0",
