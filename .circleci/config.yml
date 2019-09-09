@@ -33,9 +33,42 @@ jobs:
 
       # run tests
       - run: yarn test
+  
+  publish:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.16
+    
+    working_directory: ~/hypernova-vue
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run linter
+      - run: yarn semantic-release -d
 
 workflows:
   version: 2
   main:
     jobs:
     - build
+    - publish:
+        requires:
+            - build
+        filters:
+          branches:
+            only: master
