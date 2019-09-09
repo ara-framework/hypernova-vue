@@ -59,7 +59,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run linter
-      - run: yarn semantic-release -d
+      - run: yarn semantic-release
 
 workflows:
   version: 2
