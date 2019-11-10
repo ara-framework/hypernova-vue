@@ -56,6 +56,23 @@ describe('mountComponent', () => {
 
     expect(node.innerHTML).toEqual('<h1>Ara Framework</h1>');
   });
+
+  test('should mount component correctly ignoring html comments', () => {
+    document.body.innerHTML = '<div id="app"><!-- Comment --><div>';
+
+    const app = Vue.extend({
+      props: ['title'],
+      render(h): VNode {
+        return h('h1', {}, this.title);
+      },
+    });
+
+    const node = document.getElementById('app');
+
+    mountComponent(app, node, { title: 'Ara Framework' });
+
+    expect(node.innerHTML).toEqual('<!-- Comment --><h1>Ara Framework</h1>');
+  });
 });
 
 describe('renderInPlaceholder', () => {

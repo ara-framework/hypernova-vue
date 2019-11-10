@@ -26,7 +26,7 @@ export const mountComponent = (
     propsData: data,
   });
 
-  if (!node.firstChild) {
+  if (!node.childElementCount) {
     node.appendChild(document.createElement('div'));
   }
 

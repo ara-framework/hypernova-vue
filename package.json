@@ -1,6 +1,6 @@
 {
   "name": "hypernova-vue",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.2",
   "description": "Vue bindings for Hypernova",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
