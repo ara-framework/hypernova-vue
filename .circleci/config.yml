@@ -53,6 +53,8 @@ jobs:
 
       - run: yarn install
 
+      - run: yarn build
+
       - save_cache:
           paths:
             - node_modules
