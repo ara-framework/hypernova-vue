@@ -100,6 +100,7 @@ export const renderVuex = (
         const { propsData, state } = data;
 
         const store = createStore();
+        store.replaceState(state);
 
         const Component: VueConstructor = Vue.extend({
           ...ComponentDefinition,
@@ -107,8 +108,6 @@ export const renderVuex = (
         });
 
         const vm = mountComponent(Component, node, propsData) as VueWithStoreInstance;
-
-        vm.$store.replaceState(state);
       });
     }
 
