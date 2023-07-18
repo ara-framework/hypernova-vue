@@ -1,6 +1,6 @@
 # hypernova-vue
 
-[Vue.js](https://github.com/vuejs/vue) bindings for [Hypernova](https://github.com/airbnb/hypernova).
+[Vue.js 3](https://github.com/vuejs/core) bindings for [Hypernova](https://github.com/airbnb/hypernova).
 
 On the server, wraps the component in a function to render it to a HTML string given its props.
 
