@@ -1,5 +1,5 @@
 {
-  "name": "hypernova-vue",
+  "name": "hypernova-vue-3",
   "version": "3.0.1",
   "description": "Vue bindings for Hypernova",
   "main": "lib/index.js",
@@ -23,23 +23,23 @@
     "url": "https://github.com/ara-framework/hypernova-vue.git"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.6.0",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.4",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
-    "eslint": "^6.3.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.20.2",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.6.0",
-    "semantic-release": "^15.13.24"
+    "@babel/runtime": "^7.22.6",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.2",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1",
+    "semantic-release": "^21.0.7",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "hypernova": "^2.5.0",
     "nova-helpers": "^1.0.1-alpha.0",
-    "vue": "^2.6.6",
-    "vue-server-renderer": "^2.6.6"
+    "vue": "^3.3.4"
   }
 }

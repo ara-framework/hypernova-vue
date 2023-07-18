@@ -1,27 +1,40 @@
-import Vue, { VueConstructor } from 'vue';
-import { createRenderer } from 'vue-server-renderer';
+import { createSSRApp, Component, Plugin } from 'vue';
+import { renderToString } from 'vue/server-renderer';
 import hypernova, { serialize } from 'hypernova';
-import { CombinedVueInstance } from 'vue/types/vue';
+import { Plugins } from './typings';
 
+async function renderServerSide(
+  component: Component,
+  props: Record<string, unknown>,
+  plugins: { plugin: Plugin; options: [] }[],
+  name: string,
+) {
+  const app = createSSRApp(component, props);
 
-type VueWithStoreInstance =
-  CombinedVueInstance<Vue, object, object, object, object> & { $store: any };
+  plugins.forEach(({
+    plugin,
+    options,
+  }) => {
+    app.use(plugin, ...options);
+  });
 
-export { default as Vue } from 'vue';
+  const contents = await renderToString(app);
 
-export const renderVue = (name: string, Component: VueConstructor): void => hypernova({
+  return serialize(name, contents, props);
+}
+
+export const renderVue = (
+  name: string,
+  component: Component,
+  plugins: Plugins = [],
+): void => hypernova({
   server() {
-    return async (propsData: object): Promise<string> => {
-      const vm = new Component({
-        propsData,
-      });
-
-      const renderer = createRenderer();
-
-      const contents = await renderer.renderToString(vm);
-
-      return serialize(name, contents, propsData);
-    };
+    return async (props: Record<string, unknown>): Promise<string> => renderServerSide(
+      component,
+      props,
+      plugins,
+      name,
+    );
   },
 
   client() {
@@ -29,30 +42,21 @@ export const renderVue = (name: string, Component: VueConstructor): void => hype
   },
 });
 
-
 export const renderVuex = (
   name: string,
-  ComponentDefinition: any,
-  createStore: Function,
+  ComponentDefinition: Component,
+  createStore: () => Plugin,
 ): void => hypernova({
   server() {
-    return async (propsData: object): Promise<string> => {
+    return async (propsData: Record<string, unknown>): Promise<string> => {
       const store = createStore();
 
-      const Component = Vue.extend({
-        ...ComponentDefinition,
-        store,
-      });
-
-      const vm = (new Component({
+      return renderServerSide(
+        ComponentDefinition,
         propsData,
-      })) as VueWithStoreInstance;
-
-      const renderer = createRenderer();
-
-      const contents = await renderer.renderToString(vm);
-
-      return serialize(name, contents, { propsData, state: vm.$store.state });
+        [{ plugin: store, options: [] }],
+        name,
+      );
     };
   },
 
