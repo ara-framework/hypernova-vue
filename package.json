@@ -1,10 +1,11 @@
 {
   "name": "hypernova-vue-3",
   "version": "3.0.1",
-  "description": "Vue bindings for Hypernova",
+  "description": "Vue 3 bindings for Hypernova",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Felipe Guizar Diaz <felipegaiacharly@gmail.com>",
+  "contributors": ["Mael Jarnole <mael.jarnole@gmail.com>"],
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "build": "tsc",
@@ -13,6 +14,7 @@
   },
   "keywords": [
     "vuew",
+    "vue3",
     "hypernova",
     "server",
     "render"
